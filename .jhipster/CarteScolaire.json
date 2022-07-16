@@ -1,0 +1,59 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716215917",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "carte_scolaire",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "annee",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "longeur",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "largeur",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CarteScolaire",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "demandeDossier",
+      "otherEntityRelationshipName": "carteScolaire",
+      "relationshipName": "demandeDossier",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "matriculeApp",
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "carteScolaire",
+      "relationshipName": "apprenant",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,113 @@
+<div>
+  <h2 id="page-heading" data-cy="DiplomeHeading">
+    <span jhiTranslate="dbGestionMatricule5App.diplome.home.title">Diplomes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="dbGestionMatricule5App.diplome.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-diplome"
+        [routerLink]="['/diplome/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="dbGestionMatricule5App.diplome.home.createLabel"> Create a new Diplome </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="diplomes?.length === 0">
+    <span jhiTranslate="dbGestionMatricule5App.diplome.home.notFound">No diplomes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="diplomes && diplomes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomDiplome">
+            <span jhiTranslate="dbGestionMatricule5App.diplome.nomDiplome">Nom Diplome</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="photo">
+            <span jhiTranslate="dbGestionMatricule5App.diplome.photo">Photo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="etablissement.nomEtab">
+            <span jhiTranslate="dbGestionMatricule5App.diplome.etablissement">Etablissement</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="apprenant.nomCompletApp">
+            <span jhiTranslate="dbGestionMatricule5App.diplome.apprenant">Apprenant</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="etatDemande.id">
+            <span jhiTranslate="dbGestionMatricule5App.diplome.etatDemande">Etat Demande</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let diplome of diplomes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/diplome', diplome.id, 'view']">{{ diplome.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'dbGestionMatricule5App.NomDiplome.' + diplome.nomDiplome }}">{{ diplome.nomDiplome }}</td>
+          <td>
+            <a *ngIf="diplome.photo" (click)="openFile(diplome.photo, diplome.photoContentType)">
+              <img [src]="'data:' + diplome.photoContentType + ';base64,' + diplome.photo" style="max-height: 30px" alt="diplome image" />
+            </a>
+            <span *ngIf="diplome.photo">{{ diplome.photoContentType }}, {{ byteSize(diplome.photo) }}</span>
+          </td>
+          <td>
+            <div *ngIf="diplome.etablissement">
+              <a [routerLink]="['/etablissement', diplome.etablissement?.id, 'view']">{{ diplome.etablissement?.nomEtab }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="diplome.apprenant">
+              <a [routerLink]="['/apprenant', diplome.apprenant?.id, 'view']">{{ diplome.apprenant?.nomCompletApp }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="diplome.etatDemande">
+              <a [routerLink]="['/etat-demande', diplome.etatDemande?.id, 'view']">{{ diplome.etatDemande?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/diplome', diplome.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/diplome', diplome.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(diplome)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

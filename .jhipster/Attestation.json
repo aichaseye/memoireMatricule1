@@ -1,0 +1,29 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716220117",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "attestation",
+  "fields": [
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Attestation",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "etatDemande",
+      "otherEntityRelationshipName": "attestation",
+      "relationshipName": "etatDemande",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

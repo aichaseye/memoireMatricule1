@@ -1,0 +1,11 @@
+id;nom_diplome;photo;photo_content_type
+1;BTS;../fake-data/blob/hipster.png;image/png
+2;TS;../fake-data/blob/hipster.png;image/png
+3;BT;../fake-data/blob/hipster.png;image/png
+4;TitreProfessionnel;../fake-data/blob/hipster.png;image/png
+5;CAP;../fake-data/blob/hipster.png;image/png
+6;CAEP;../fake-data/blob/hipster.png;image/png
+7;CQP;../fake-data/blob/hipster.png;image/png
+8;CAP;../fake-data/blob/hipster.png;image/png
+9;CAP;../fake-data/blob/hipster.png;image/png
+10;CPS;../fake-data/blob/hipster.png;image/png

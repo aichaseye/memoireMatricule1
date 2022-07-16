@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity DemandeDossier.
+    -->
+    <changeSet id="20220716221417-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="etat_demande_id"
+                                 baseTableName="demande_dossier"
+                                 constraintName="fk_demande_dossier__etat_demande_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="etat_demande"/>
+    </changeSet>
+</databaseChangeLog>

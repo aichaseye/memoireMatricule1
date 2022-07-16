@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="releveNote">
+      <h2 data-cy="releveNoteDetailsHeading"><span jhiTranslate="dbGestionMatricule5App.releveNote.detail.title">Releve Note</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ releveNote.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.annee">Annee</span></dt>
+        <dd>
+          <span>{{ releveNote.annee | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.moyenne">Moyenne</span></dt>
+        <dd>
+          <span>{{ releveNote.moyenne }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.serie">Serie</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Serie.' + releveNote.serie }}">{{ releveNote.serie }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.filiere">Filiere</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Filiere.' + releveNote.filiere }}">{{ releveNote.filiere }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.niveau">Niveau</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Niveau.' + releveNote.niveau }}">{{ releveNote.niveau }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.moyenneGenerale">Moyenne Generale</span></dt>
+        <dd>
+          <span>{{ releveNote.moyenneGenerale }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.rang">Rang</span></dt>
+        <dd>
+          <span>{{ releveNote.rang }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.noteConduite">Note Conduite</span></dt>
+        <dd>
+          <span>{{ releveNote.noteConduite }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.matriculeRel">Matricule Rel</span></dt>
+        <dd>
+          <span>{{ releveNote.matriculeRel }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.apprenant">Apprenant</span></dt>
+        <dd>
+          <div *ngIf="releveNote.apprenant">
+            <a [routerLink]="['/apprenant', releveNote.apprenant?.id, 'view']">{{ releveNote.apprenant?.nomCompletApp }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.filiereEtude">Filiere Etude</span></dt>
+        <dd>
+          <div *ngIf="releveNote.filiereEtude">
+            <a [routerLink]="['/filiere-etude', releveNote.filiereEtude?.id, 'view']">{{ releveNote.filiereEtude?.filiere }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.serieEtude">Serie Etude</span></dt>
+        <dd>
+          <div *ngIf="releveNote.serieEtude">
+            <a [routerLink]="['/serie-etude', releveNote.serieEtude?.id, 'view']">{{ releveNote.serieEtude?.serie }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.releveNote.demandeDossier">Demande Dossier</span></dt>
+        <dd>
+          <div *ngIf="releveNote.demandeDossier">
+            <a [routerLink]="['/demande-dossier', releveNote.demandeDossier?.id, 'view']">{{ releveNote.demandeDossier?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/releve-note', releveNote.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="diplome">
+      <h2 data-cy="diplomeDetailsHeading"><span jhiTranslate="dbGestionMatricule5App.diplome.detail.title">Diplome</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ diplome.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.diplome.nomDiplome">Nom Diplome</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.NomDiplome.' + diplome.nomDiplome }}">{{ diplome.nomDiplome }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.diplome.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="diplome.photo">
+            <a (click)="openFile(diplome.photo, diplome.photoContentType)">
+              <img [src]="'data:' + diplome.photoContentType + ';base64,' + diplome.photo" style="max-width: 100%" alt="diplome image" />
+            </a>
+            {{ diplome.photoContentType }}, {{ byteSize(diplome.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.diplome.etablissement">Etablissement</span></dt>
+        <dd>
+          <div *ngIf="diplome.etablissement">
+            <a [routerLink]="['/etablissement', diplome.etablissement?.id, 'view']">{{ diplome.etablissement?.nomEtab }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.diplome.apprenant">Apprenant</span></dt>
+        <dd>
+          <div *ngIf="diplome.apprenant">
+            <a [routerLink]="['/apprenant', diplome.apprenant?.id, 'view']">{{ diplome.apprenant?.nomCompletApp }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.diplome.etatDemande">Etat Demande</span></dt>
+        <dd>
+          <div *ngIf="diplome.etatDemande">
+            <a [routerLink]="['/etat-demande', diplome.etatDemande?.id, 'view']">{{ diplome.etatDemande?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/diplome', diplome.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

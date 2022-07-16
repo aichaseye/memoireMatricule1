@@ -1,0 +1,39 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716221817",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "observation",
+  "fields": [
+    {
+      "fieldName": "asuduite",
+      "fieldType": "Asuduite",
+      "fieldValues": "OUI,NON,ASSEZ,ABANDON,TRANSFERT,EXCLUSION"
+    },
+    {
+      "fieldName": "ponctualite",
+      "fieldType": "Ponctualite",
+      "fieldValues": "OUI,NON,ASSEZ"
+    },
+    {
+      "fieldName": "apte",
+      "fieldType": "Apte",
+      "fieldValues": "OUI,NON"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Observation",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomCompletApp",
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "observation",
+      "relationshipName": "apprenant",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

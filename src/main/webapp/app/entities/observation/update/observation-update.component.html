@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-observation-heading"
+        data-cy="ObservationCreateUpdateHeading"
+        jhiTranslate="dbGestionMatricule5App.observation.home.createOrEditLabel"
+      >
+        Create or edit a Observation
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.observation.asuduite" for="field_asuduite">Asuduite</label>
+          <select class="form-control" name="asuduite" formControlName="asuduite" id="field_asuduite" data-cy="asuduite">
+            <option [ngValue]="null">{{ 'dbGestionMatricule5App.Asuduite.null' | translate }}</option>
+            <option *ngFor="let asuduite of asuduiteValues" [value]="asuduite">
+              {{ 'dbGestionMatricule5App.Asuduite.' + asuduite | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.observation.ponctualite" for="field_ponctualite"
+            >Ponctualite</label
+          >
+          <select class="form-control" name="ponctualite" formControlName="ponctualite" id="field_ponctualite" data-cy="ponctualite">
+            <option [ngValue]="null">{{ 'dbGestionMatricule5App.Ponctualite.null' | translate }}</option>
+            <option *ngFor="let ponctualite of ponctualiteValues" [value]="ponctualite">
+              {{ 'dbGestionMatricule5App.Ponctualite.' + ponctualite | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.observation.apte" for="field_apte">Apte</label>
+          <select class="form-control" name="apte" formControlName="apte" id="field_apte" data-cy="apte">
+            <option [ngValue]="null">{{ 'dbGestionMatricule5App.Apte.null' | translate }}</option>
+            <option *ngFor="let apte of apteValues" [value]="apte">{{ 'dbGestionMatricule5App.Apte.' + apte | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.observation.apprenant" for="field_apprenant">Apprenant</label>
+          <select class="form-control" id="field_apprenant" data-cy="apprenant" name="apprenant" formControlName="apprenant">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="apprenantOption.id === editForm.get('apprenant')!.value?.id ? editForm.get('apprenant')!.value : apprenantOption"
+              *ngFor="let apprenantOption of apprenantsSharedCollection; trackBy: trackApprenantById"
+            >
+              {{ apprenantOption.nomCompletApp }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+{
+  "dbGestionMatricule5App": {
+    "bulletin": {
+      "home": {
+        "title": "Bulletins",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Bulletin",
+        "createOrEditLabel": "Créer ou éditer un Bulletin",
+        "notFound": "Aucun Bulletin trouvé"
+      },
+      "created": "Un nouveau Bulletin a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Bulletin avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Bulletin avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Bulletin {{ id }} ?"
+      },
+      "detail": {
+        "title": "Bulletin"
+      },
+      "id": "ID",
+      "nomsemestre": "Nomsemestre",
+      "annee": "Annee",
+      "moyenne": "Moyenne",
+      "serie": "Serie",
+      "filiere": "Filiere",
+      "niveau": "Niveau",
+      "moyenneGenerale": "Moyenne Generale",
+      "rang": "Rang",
+      "noteConduite": "Note Conduite",
+      "matricule": "Matricule",
+      "apprenant": "Apprenant",
+      "demandeDossier": "Demande Dossier"
+    }
+  }
+}

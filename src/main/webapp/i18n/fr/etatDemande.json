@@ -1,0 +1,29 @@
+{
+  "dbGestionMatricule5App": {
+    "etatDemande": {
+      "home": {
+        "title": "EtatDemandes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Etat Demande",
+        "createOrEditLabel": "Créer ou éditer un Etat Demande",
+        "notFound": "Aucun Etat Demande trouvé"
+      },
+      "created": "Un nouveau Etat Demande a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Etat Demande avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Etat Demande avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Etat Demande {{ id }} ?"
+      },
+      "detail": {
+        "title": "Etat Demande"
+      },
+      "id": "ID",
+      "matricule": "Matricule",
+      "typeDossier": "Type Dossier",
+      "status": "Status",
+      "demandeDossier": "Demande Dossier",
+      "diplome": "Diplome",
+      "attestation": "Attestation"
+    }
+  }
+}

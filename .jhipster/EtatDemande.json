@@ -1,0 +1,52 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716220517",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "etat_demande",
+  "fields": [
+    {
+      "fieldName": "matricule",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "typeDossier",
+      "fieldType": "TypeDossier",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Diplome,Attestation,Bulletin,Releve,CarteScolaire,Verification"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Disponible,Non_disponible"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "EtatDemande",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "demandeDossier",
+      "otherEntityRelationshipName": "etatDemande",
+      "relationshipName": "demandeDossier",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "diplome",
+      "otherEntityRelationshipName": "etatDemande",
+      "relationshipName": "diplome",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "attestation",
+      "otherEntityRelationshipName": "etatDemande",
+      "relationshipName": "attestation",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

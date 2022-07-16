@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="bulletin">
+      <h2 data-cy="bulletinDetailsHeading"><span jhiTranslate="dbGestionMatricule5App.bulletin.detail.title">Bulletin</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ bulletin.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.nomsemestre">Nomsemestre</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.NomSemestre.' + bulletin.nomsemestre }}">{{ bulletin.nomsemestre }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.annee">Annee</span></dt>
+        <dd>
+          <span>{{ bulletin.annee | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.moyenne">Moyenne</span></dt>
+        <dd>
+          <span>{{ bulletin.moyenne }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.serie">Serie</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Serie.' + bulletin.serie }}">{{ bulletin.serie }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.filiere">Filiere</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Filiere.' + bulletin.filiere }}">{{ bulletin.filiere }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.niveau">Niveau</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Niveau.' + bulletin.niveau }}">{{ bulletin.niveau }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.moyenneGenerale">Moyenne Generale</span></dt>
+        <dd>
+          <span>{{ bulletin.moyenneGenerale }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.rang">Rang</span></dt>
+        <dd>
+          <span>{{ bulletin.rang }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.noteConduite">Note Conduite</span></dt>
+        <dd>
+          <span>{{ bulletin.noteConduite }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.matricule">Matricule</span></dt>
+        <dd>
+          <span>{{ bulletin.matricule }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.apprenant">Apprenant</span></dt>
+        <dd>
+          <div *ngIf="bulletin.apprenant">
+            <a [routerLink]="['/apprenant', bulletin.apprenant?.id, 'view']">{{ bulletin.apprenant?.nomCompletApp }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.bulletin.demandeDossier">Demande Dossier</span></dt>
+        <dd>
+          <div *ngIf="bulletin.demandeDossier">
+            <a [routerLink]="['/demande-dossier', bulletin.demandeDossier?.id, 'view']">{{ bulletin.demandeDossier?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/bulletin', bulletin.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

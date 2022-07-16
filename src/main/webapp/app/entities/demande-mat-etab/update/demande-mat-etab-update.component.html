@@ -1,0 +1,226 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-demande-mat-etab-heading"
+        data-cy="DemandeMatEtabCreateUpdateHeading"
+        jhiTranslate="dbGestionMatricule5App.demandeMatEtab.home.createOrEditLabel"
+      >
+        Create or edit a Demande Mat Etab
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.prenom" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+          <div *ngIf="editForm.get('prenom')!.invalid && (editForm.get('prenom')!.dirty || editForm.get('prenom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('prenom')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.responsabilite" for="field_responsabilite"
+            >Responsabilite</label
+          >
+          <select
+            class="form-control"
+            name="responsabilite"
+            formControlName="responsabilite"
+            id="field_responsabilite"
+            data-cy="responsabilite"
+          >
+            <option [ngValue]="null">{{ 'dbGestionMatricule5App.Responsabilite.null' | translate }}</option>
+            <option *ngFor="let responsabilite of responsabiliteValues" [value]="responsabilite">
+              {{ 'dbGestionMatricule5App.Responsabilite.' + responsabilite | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('responsabilite')!.invalid && (editForm.get('responsabilite')!.dirty || editForm.get('responsabilite')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('responsabilite')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.nomEtab" for="field_nomEtab">Nom Etab</label>
+          <input type="text" class="form-control" name="nomEtab" id="field_nomEtab" data-cy="nomEtab" formControlName="nomEtab" />
+          <div *ngIf="editForm.get('nomEtab')!.invalid && (editForm.get('nomEtab')!.dirty || editForm.get('nomEtab')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomEtab')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.departement" for="field_departement"
+            >Departement</label
+          >
+          <select class="form-control" name="departement" formControlName="departement" id="field_departement" data-cy="departement">
+            <option [ngValue]="null">{{ 'dbGestionMatricule5App.NomDep.null' | translate }}</option>
+            <option *ngFor="let nomDep of nomDepValues" [value]="nomDep">
+              {{ 'dbGestionMatricule5App.NomDep.' + nomDep | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('departement')!.invalid && (editForm.get('departement')!.dirty || editForm.get('departement')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('departement')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeEtab" for="field_typeEtab">Type Etab</label>
+          <select class="form-control" name="typeEtab" formControlName="typeEtab" id="field_typeEtab" data-cy="typeEtab">
+            <option [ngValue]="null">{{ 'dbGestionMatricule5App.TypeEtab.null' | translate }}</option>
+            <option *ngFor="let typeEtab of typeEtabValues" [value]="typeEtab">
+              {{ 'dbGestionMatricule5App.TypeEtab.' + typeEtab | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('typeEtab')!.invalid && (editForm.get('typeEtab')!.dirty || editForm.get('typeEtab')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('typeEtab')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.statut" for="field_statut">Statut</label>
+          <select class="form-control" name="statut" formControlName="statut" id="field_statut" data-cy="statut">
+            <option [ngValue]="null">{{ 'dbGestionMatricule5App.StatutEtab.null' | translate }}</option>
+            <option *ngFor="let statutEtab of statutEtabValues" [value]="statutEtab">
+              {{ 'dbGestionMatricule5App.StatutEtab.' + statutEtab | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('statut')!.invalid && (editForm.get('statut')!.dirty || editForm.get('statut')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('statut')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeInsp" for="field_typeInsp">Type Insp</label>
+          <select class="form-control" name="typeInsp" formControlName="typeInsp" id="field_typeInsp" data-cy="typeInsp">
+            <option [ngValue]="null">{{ 'dbGestionMatricule5App.TypeInspection.null' | translate }}</option>
+            <option *ngFor="let typeInspection of typeInspectionValues" [value]="typeInspection">
+              {{ 'dbGestionMatricule5App.TypeInspection.' + typeInspection | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('typeInsp')!.invalid && (editForm.get('typeInsp')!.dirty || editForm.get('typeInsp')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('typeInsp')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.matriculeEtab" for="field_matriculeEtab"
+            >Matricule Etab</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="matriculeEtab"
+            id="field_matriculeEtab"
+            data-cy="matriculeEtab"
+            formControlName="matriculeEtab"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.etablissement" for="field_etablissement"
+            >Etablissement</label
+          >
+          <select
+            class="form-control"
+            id="field_etablissement"
+            data-cy="etablissement"
+            name="etablissement"
+            formControlName="etablissement"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                etablissementOption.id === editForm.get('etablissement')!.value?.id
+                  ? editForm.get('etablissement')!.value
+                  : etablissementOption
+              "
+              *ngFor="let etablissementOption of etablissementsSharedCollection; trackBy: trackEtablissementById"
+            >
+              {{ etablissementOption.nomEtab }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

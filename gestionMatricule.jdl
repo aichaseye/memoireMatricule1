@@ -1,0 +1,371 @@
+application {
+  config {
+    baseName db_gestion_Matricule5,
+    applicationType monolith,
+    packageName sn.seye.gestionmatricule.mefpai,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    devDatabaseType mysql,
+    databaseType sql,
+    clientFramework angularX,
+    buildTool maven,
+    languages [fr,en],
+    nativeLanguage fr,
+	serverPort 8385
+  }
+  
+  entities *
+}
+
+
+entity Localite {
+	region NomReg  required,
+    departement NomDep required,
+    commune String required
+}
+
+enum NomReg {
+Dakar, Thies, Saint_Louis, Diourbel, Louga, Fatick, Kaffrine, 
+Kaolack, Matam, Tambacounda, Kedougou, Kolda, Ziguinchor, Sedhiou
+}
+
+
+enum NomDep{
+Dakar, Pikine, Rufisque, Guediawaye, Keur_Massar,
+Thies, Mbour, Tivaoune,
+Saint_Louis, Dagana, Podor,
+Diourbel, Mbacke, Bambey,
+Louga, Linguere, Kebemer,
+Fatick, Foundiougne, Gossas,
+Kaffrine, Birkelane, Koungheul, Malem_Hodar,
+Kaolack, Guinguineo, Nioro_du_Rip,
+Matam, Kanel, Ranerou,
+Tambacounda, Bakel, Goudiry, Koumpentoum,
+Kedougou, Salemata, Saraya,
+Kolda, Velingara, Medina_Yoro_Foulah,
+Sedhiou, Bounkiling, Goudomp,
+Ziguinchor, Bignona, Oussouye
+}
+
+
+// an ignored comment
+/** not an ignored comment */
+entity Inspection {
+	nomInsp String required,
+	typeInsp TypeInspection required,
+	latitude Long,
+	longitude Long
+}
+enum TypeInspection {
+	IA, IEF  
+}
+entity Etablissement {
+	
+	  nomEtab String required ,
+	  typeEtab TypeEtab required,
+	  statut StatutEtab required,
+      adresse String,
+      @unique
+  	  @email
+	  email String  ,
+	  latitude Long,
+	  longitude Long,
+      @unique
+	  matriculeEtab String 
+}
+
+enum TypeEtab {
+	LyceeTechnique, CFP  
+}
+enum StatutEtab {
+	Prive, Public  
+}
+entity Apprenant {
+	nomCompletApp String  required,
+    @unique
+  	@email
+	email String required  ,
+    @unique
+	telephone String required ,
+	dateNaissance LocalDate required,
+	photo ImageBlob ,
+    adresse String ,		
+    @unique
+    matriculeApp String ,
+    sexe Sexe required,
+    nationalite Nationalite  required
+    
+}
+
+enum Sexe {
+	Masclin, Feminin  
+}
+
+enum Nationalite {
+	Senegalais, Autre  
+}
+entity CarteScolaire {
+	nom String  required,
+    prenom String  required,
+	photo ImageBlob required,		
+    annee LocalDate required
+    longeur Integer,
+    largeur Integer
+    
+}
+entity Diplome {
+	nomDiplome NomDiplome
+	photo ImageBlob required,		
+}
+enum NomDiplome {
+	CAP, BTS , BT , CPS, BEP, CQP, TS,
+    METP, BTI, TitreProfessionnel, CAEP
+}
+entity Attestation {
+	
+	photo ImageBlob required,		
+    
+}
+entity Inscription {
+	
+	anneeIns LocalDate required,
+    numeroInscription Integer required
+	
+}
+
+entity Personnel {
+	nomPers String required,
+	prenomPers String required,
+    responsabilite  Responsabilite required,
+    @unique
+    @email
+	email String required ,
+    
+}
+
+enum Responsabilite {
+    Comptable_matiere, Proviseur, 
+    Chef_travaux, BFPA, Admin, Directeur,
+    Surveillant
+}
+entity Classe {
+    nomClasse String required
+}
+
+entity EtatDemande {
+    matricule String required,
+    typeDossier TypeDossier required,
+    status Status required
+}
+enum Status{
+	Disponible , Non_disponible
+}
+entity SerieEtude {
+    serie Serie 
+}
+entity FiliereEtude {
+    filiere Filiere required
+}
+entity NiveauEtude {
+    niveau Niveau required
+}
+enum Serie {
+	STEG, STIDD_E, STIDD_M, S3, S4, S5 , F6
+}
+enum Filiere {
+	Agricultre, Peche, Elevage, Mine_Cariere,
+    Artisanat, Batiment_TraveauxPublics,
+    Mecanique, MenuiserieBois, Habillement,
+    Agroalimentaire, Electronique,
+    Electrotechnique, Energetique, Hydrolique,
+    Structure_Metallique, Structure_Plastique,
+    Beaute_Esthetique, Developpement_Territorial,
+    Droit, Economie_et_gestionLogistique,
+    Industrie_cultirelle_et_creative ,
+    Informatique_et_numerique, Restauration_Htellerie,
+    Sante, Biologie_chimie, Sport, Tourisme, Environnement
+}
+
+enum Niveau {
+	CAP1, CAP2, CAP3, BTS1, BTS2, BT1, BT2, BT3 , CPS, BEP1, BEP2, BEP3, CQP,
+    ChefEquipe, ChefChantier, TechnicienSpecialise,
+    METP, BTI, TitreProfessionnel
+}
+entity ReleveNote {
+    annee LocalDate required,
+    moyenne Float,
+    serie Serie
+    filiere Filiere
+    niveau Niveau
+    moyenneGenerale Float,
+    rang String,
+    noteConduite Integer,
+    matriculeRel String required
+}
+entity Bulletin {
+	nomsemestre NomSemestre
+    annee LocalDate required,
+    moyenne Float,
+    serie Serie
+    filiere Filiere
+    niveau Niveau
+    moyenneGenerale Float,
+    rang String,
+    noteConduite Integer,
+    matricule String 
+}
+enum NomSemestre {
+	Semestre1, Semestre2, Semestre3
+    
+}
+entity Programme {
+	nomModule String,
+    coef Integer,
+    note Float
+}
+
+
+entity DemandeMatApp{
+	nom String required,
+    prenom String required,
+	@unique
+  	@email
+	email String required,
+    @unique
+	telephone String required ,
+	dateNaissance LocalDate required ,
+    sexe Sexe required, 
+    @unique
+    matriculeApp String 
+    
+}
+entity DemandeMatEtab {
+	nom String required,
+    prenom String required,
+    responsabilite  Responsabilite required,
+    nomEtab String required,
+    departement NomDep required,
+    typeEtab TypeEtab required,
+	statut StatutEtab required,
+    typeInsp TypeInspection required,
+    @unique
+  	@email
+	email String required, 
+    matriculeEtab String
+}
+entity DemandeDossier {
+	nom String  required,
+    prenom String  required,
+    @unique
+  	@email
+	email String required ,
+	dateNaissance LocalDate required,	
+    @unique
+    matricule String required,
+    typeDossier TypeDossier required,
+    annee LocalDate required,
+    serie Serie ,
+    filiere Filiere required,
+    nomSemestre NomSemestre required,
+    niveau Niveau required,
+    typeReleve TypeReleve required,
+    nomDiplome NomDiplome required,
+    photo ImageBlob 
+    
+}
+enum TypeReleve{
+	Admis , Ajourne
+}
+
+enum  TypeDossier{
+	Diplome, Attestation, Bulletin, Releve, CarteScolaire, Verification
+}
+
+entity Matiere {
+	nomMatiere String required,
+	reference String,
+	typeMatiere String ,
+    etatMatiere String,
+    matriculeMatiere String
+}
+entity Image {
+	
+    url String
+}
+
+entity Bon {
+	quantite Integer,
+	date LocalDate,
+    description String
+}
+entity Observation{
+	asuduite Asuduite
+    ponctualite Ponctualite
+    apte Apte
+}
+enum Ponctualite{
+	OUI, NON, ASSEZ
+}
+enum Asuduite{
+	OUI, NON, ASSEZ, ABANDON , TRANSFERT, EXCLUSION
+}
+enum Apte{
+	OUI, NON
+}
+relationship OneToMany {
+	Localite to Etablissement{Localite(departement)}
+    Etablissement to Bon{Etablissement(typeEtab)}
+    Etablissement to Apprenant{Etablissement(nomEtab)}
+	Etablissement to Personnel{Etablissement(nomEtab)}
+	Etablissement to Classe{Etablissement(nomEtab)}
+    Etablissement to Diplome{Etablissement(nomEtab)}
+    Etablissement to DemandeMatEtab{Etablissement(nomEtab)}
+	Apprenant to Inscription{Apprenant(nomCompletApp)}
+	Programme to Classe{Programme(nomModule)}
+    Classe to Inscription{Classe(nomClasse)}
+    Inspection to Personnel{Inspection(nomInsp)}
+	Matiere to Bon{Matiere(matriculeMatiere)}
+	Matiere to Image{Matiere(nomMatiere)}
+    Inspection to Etablissement{Inspection(nomInsp)}
+     Apprenant to ReleveNote{Apprenant(nomCompletApp)}
+     Apprenant to Bulletin{Apprenant(nomCompletApp)}
+	 Apprenant to Diplome{Apprenant(nomCompletApp)}
+	 FiliereEtude to Etablissement{FiliereEtude(filiere)}
+     SerieEtude to Etablissement{SerieEtude(serie)}
+     NiveauEtude to Classe{NiveauEtude(niveau)}
+	 FiliereEtude to ReleveNote{FiliereEtude(filiere)}
+     SerieEtude  to ReleveNote{SerieEtude(serie)}
+	 NiveauEtude to Apprenant{NiveauEtude(niveau)}
+     Apprenant to Observation{Apprenant(nomCompletApp)}
+     DemandeMatApp to Apprenant
+     DemandeDossier to Apprenant
+     DemandeDossier to Bulletin
+     DemandeDossier to ReleveNote
+     DemandeDossier to CarteScolaire  
+     EtatDemande  to DemandeDossier
+     EtatDemande  to Diplome
+     EtatDemande  to Attestation
+     Apprenant to CarteScolaire{Apprenant (MatriculeApp)}
+     
+     
+}
+
+
+relationship ManyToMany {
+	Programme{ReleveNote(moyenne)} to ReleveNote{Programme}
+}
+
+
+
+// Set pagination options
+paginate * with infinite-scroll
+//paginate Job with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

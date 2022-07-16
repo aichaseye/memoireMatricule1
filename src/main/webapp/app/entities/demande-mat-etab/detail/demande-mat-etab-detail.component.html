@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeMatEtab">
+      <h2 data-cy="demandeMatEtabDetailsHeading">
+        <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.detail.title">Demande Mat Etab</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.nom">Nom</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.responsabilite">Responsabilite</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Responsabilite.' + demandeMatEtab.responsabilite }}">{{
+            demandeMatEtab.responsabilite
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.nomEtab">Nom Etab</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.nomEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.departement">Departement</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.NomDep.' + demandeMatEtab.departement }}">{{ demandeMatEtab.departement }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeEtab">Type Etab</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.TypeEtab.' + demandeMatEtab.typeEtab }}">{{ demandeMatEtab.typeEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.statut">Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.StatutEtab.' + demandeMatEtab.statut }}">{{ demandeMatEtab.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeInsp">Type Insp</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.TypeInspection.' + demandeMatEtab.typeInsp }}">{{ demandeMatEtab.typeInsp }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.email">Email</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.matriculeEtab">Matricule Etab</span></dt>
+        <dd>
+          <span>{{ demandeMatEtab.matriculeEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.etablissement">Etablissement</span></dt>
+        <dd>
+          <div *ngIf="demandeMatEtab.etablissement">
+            <a [routerLink]="['/etablissement', demandeMatEtab.etablissement?.id, 'view']">{{ demandeMatEtab.etablissement?.nomEtab }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-mat-etab', demandeMatEtab.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

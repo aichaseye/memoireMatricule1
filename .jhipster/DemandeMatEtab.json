@@ -1,0 +1,82 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716221317",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "demande_mat_etab",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "responsabilite",
+      "fieldType": "Responsabilite",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Comptable_matiere,Proviseur,Chef_travaux,BFPA,Admin,Directeur,Surveillant"
+    },
+    {
+      "fieldName": "nomEtab",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "departement",
+      "fieldType": "NomDep",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Dakar,Pikine,Rufisque,Guediawaye,Keur_Massar,Thies,Mbour,Tivaoune,Saint_Louis,Dagana,Podor,Diourbel,Mbacke,Bambey,Louga,Linguere,Kebemer,Fatick,Foundiougne,Gossas,Kaffrine,Birkelane,Koungheul,Malem_Hodar,Kaolack,Guinguineo,Nioro_du_Rip,Matam,Kanel,Ranerou,Tambacounda,Bakel,Goudiry,Koumpentoum,Kedougou,Salemata,Saraya,Kolda,Velingara,Medina_Yoro_Foulah,Sedhiou,Bounkiling,Goudomp,Ziguinchor,Bignona,Oussouye"
+    },
+    {
+      "fieldName": "typeEtab",
+      "fieldType": "TypeEtab",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LyceeTechnique,CFP"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutEtab",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Prive,Public"
+    },
+    {
+      "fieldName": "typeInsp",
+      "fieldType": "TypeInspection",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "IA,IEF"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "email": true,
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "matriculeEtab",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DemandeMatEtab",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomEtab",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "demandeMatEtab",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

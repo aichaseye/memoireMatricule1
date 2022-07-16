@@ -1,0 +1,92 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716220917",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "releve_note",
+  "fields": [
+    {
+      "fieldName": "annee",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "moyenne",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "serie",
+      "fieldType": "Serie",
+      "fieldValues": "STEG,STIDD_E,STIDD_M,S3,S4,S5,F6"
+    },
+    {
+      "fieldName": "filiere",
+      "fieldType": "Filiere",
+      "fieldValues": "Agricultre,Peche,Elevage,Mine_Cariere,Artisanat,Batiment_TraveauxPublics,Mecanique,MenuiserieBois,Habillement,Agroalimentaire,Electronique,Electrotechnique,Energetique,Hydrolique,Structure_Metallique,Structure_Plastique,Beaute_Esthetique,Developpement_Territorial,Droit,Economie_et_gestionLogistique,Industrie_cultirelle_et_creative,Informatique_et_numerique,Restauration_Htellerie,Sante,Biologie_chimie,Sport,Tourisme,Environnement"
+    },
+    {
+      "fieldName": "niveau",
+      "fieldType": "Niveau",
+      "fieldValues": "CAP1,CAP2,CAP3,BTS1,BTS2,BT1,BT2,BT3,CPS,BEP1,BEP2,BEP3,CQP,ChefEquipe,ChefChantier,TechnicienSpecialise,METP,BTI,TitreProfessionnel"
+    },
+    {
+      "fieldName": "moyenneGenerale",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "rang",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "noteConduite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "matriculeRel",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ReleveNote",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomCompletApp",
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "releveNote",
+      "relationshipName": "apprenant",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "filiere",
+      "otherEntityName": "filiereEtude",
+      "otherEntityRelationshipName": "releveNote",
+      "relationshipName": "filiereEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "serie",
+      "otherEntityName": "serieEtude",
+      "otherEntityRelationshipName": "releveNote",
+      "relationshipName": "serieEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "demandeDossier",
+      "otherEntityRelationshipName": "releveNote",
+      "relationshipName": "demandeDossier",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "programme",
+      "otherEntityRelationshipName": "releveNote",
+      "ownerSide": false,
+      "relationshipName": "programme",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

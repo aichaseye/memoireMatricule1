@@ -1,0 +1,25 @@
+{
+  "dbGestionMatricule5App": {
+    "attestation": {
+      "home": {
+        "title": "Attestations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Attestation",
+        "createOrEditLabel": "Create or edit a Attestation",
+        "notFound": "No Attestations found"
+      },
+      "created": "A new Attestation is created with identifier {{ param }}",
+      "updated": "A Attestation is updated with identifier {{ param }}",
+      "deleted": "A Attestation is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Attestation {{ id }}?"
+      },
+      "detail": {
+        "title": "Attestation"
+      },
+      "id": "ID",
+      "photo": "Photo",
+      "etatDemande": "Etat Demande"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "dbGestionMatricule5App": {
+    "demandeMatEtab": {
+      "home": {
+        "title": "Demande Mat Etabs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Demande Mat Etab",
+        "createOrEditLabel": "Create or edit a Demande Mat Etab",
+        "notFound": "No Demande Mat Etabs found"
+      },
+      "created": "A new Demande Mat Etab is created with identifier {{ param }}",
+      "updated": "A Demande Mat Etab is updated with identifier {{ param }}",
+      "deleted": "A Demande Mat Etab is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Demande Mat Etab {{ id }}?"
+      },
+      "detail": {
+        "title": "Demande Mat Etab"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "responsabilite": "Responsabilite",
+      "nomEtab": "Nom Etab",
+      "departement": "Departement",
+      "typeEtab": "Type Etab",
+      "statut": "Statut",
+      "typeInsp": "Type Insp",
+      "email": "Email",
+      "matriculeEtab": "Matricule Etab",
+      "etablissement": "Etablissement"
+    }
+  }
+}

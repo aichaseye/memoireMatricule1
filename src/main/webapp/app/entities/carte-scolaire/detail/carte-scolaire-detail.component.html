@@ -1,0 +1,75 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="carteScolaire">
+      <h2 data-cy="carteScolaireDetailsHeading">
+        <span jhiTranslate="dbGestionMatricule5App.carteScolaire.detail.title">Carte Scolaire</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ carteScolaire.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.carteScolaire.nom">Nom</span></dt>
+        <dd>
+          <span>{{ carteScolaire.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.carteScolaire.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ carteScolaire.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.carteScolaire.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="carteScolaire.photo">
+            <a (click)="openFile(carteScolaire.photo, carteScolaire.photoContentType)">
+              <img
+                [src]="'data:' + carteScolaire.photoContentType + ';base64,' + carteScolaire.photo"
+                style="max-width: 100%"
+                alt="carteScolaire image"
+              />
+            </a>
+            {{ carteScolaire.photoContentType }}, {{ byteSize(carteScolaire.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.carteScolaire.annee">Annee</span></dt>
+        <dd>
+          <span>{{ carteScolaire.annee | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.carteScolaire.longeur">Longeur</span></dt>
+        <dd>
+          <span>{{ carteScolaire.longeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.carteScolaire.largeur">Largeur</span></dt>
+        <dd>
+          <span>{{ carteScolaire.largeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.carteScolaire.demandeDossier">Demande Dossier</span></dt>
+        <dd>
+          <div *ngIf="carteScolaire.demandeDossier">
+            <a [routerLink]="['/demande-dossier', carteScolaire.demandeDossier?.id, 'view']">{{ carteScolaire.demandeDossier?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.carteScolaire.apprenant">Apprenant</span></dt>
+        <dd>
+          <div *ngIf="carteScolaire.apprenant">
+            <a [routerLink]="['/apprenant', carteScolaire.apprenant?.id, 'view']">{{ carteScolaire.apprenant?.matriculeApp }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/carte-scolaire', carteScolaire.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etablissement">
+      <h2 data-cy="etablissementDetailsHeading">
+        <span jhiTranslate="dbGestionMatricule5App.etablissement.detail.title">Etablissement</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ etablissement.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.nomEtab">Nom Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.nomEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.typeEtab">Type Etab</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.TypeEtab.' + etablissement.typeEtab }}">{{ etablissement.typeEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.statut">Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.StatutEtab.' + etablissement.statut }}">{{ etablissement.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ etablissement.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.email">Email</span></dt>
+        <dd>
+          <span>{{ etablissement.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ etablissement.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.longitude">Longitude</span></dt>
+        <dd>
+          <span>{{ etablissement.longitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.matriculeEtab">Matricule Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.matriculeEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.localite">Localite</span></dt>
+        <dd>
+          <div *ngIf="etablissement.localite">
+            <a [routerLink]="['/localite', etablissement.localite?.id, 'view']">{{ etablissement.localite?.departement }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.inspection">Inspection</span></dt>
+        <dd>
+          <div *ngIf="etablissement.inspection">
+            <a [routerLink]="['/inspection', etablissement.inspection?.id, 'view']">{{ etablissement.inspection?.nomInsp }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.filiereEtude">Filiere Etude</span></dt>
+        <dd>
+          <div *ngIf="etablissement.filiereEtude">
+            <a [routerLink]="['/filiere-etude', etablissement.filiereEtude?.id, 'view']">{{ etablissement.filiereEtude?.filiere }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etablissement.serieEtude">Serie Etude</span></dt>
+        <dd>
+          <div *ngIf="etablissement.serieEtude">
+            <a [routerLink]="['/serie-etude', etablissement.serieEtude?.id, 'view']">{{ etablissement.serieEtude?.serie }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etablissement', etablissement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

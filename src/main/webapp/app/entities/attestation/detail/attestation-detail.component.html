@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="attestation">
+      <h2 data-cy="attestationDetailsHeading"><span jhiTranslate="dbGestionMatricule5App.attestation.detail.title">Attestation</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ attestation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.attestation.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="attestation.photo">
+            <a (click)="openFile(attestation.photo, attestation.photoContentType)">
+              <img
+                [src]="'data:' + attestation.photoContentType + ';base64,' + attestation.photo"
+                style="max-width: 100%"
+                alt="attestation image"
+              />
+            </a>
+            {{ attestation.photoContentType }}, {{ byteSize(attestation.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.attestation.etatDemande">Etat Demande</span></dt>
+        <dd>
+          <div *ngIf="attestation.etatDemande">
+            <a [routerLink]="['/etat-demande', attestation.etatDemande?.id, 'view']">{{ attestation.etatDemande?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/attestation', attestation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

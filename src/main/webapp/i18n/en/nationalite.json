@@ -1,0 +1,9 @@
+{
+  "dbGestionMatricule5App": {
+    "Nationalite": {
+      "null": "",
+      "Senegalais": "Senegalais",
+      "Autre": "Autre"
+    }
+  }
+}

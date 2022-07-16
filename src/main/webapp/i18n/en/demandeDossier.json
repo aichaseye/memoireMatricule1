@@ -1,0 +1,42 @@
+{
+  "dbGestionMatricule5App": {
+    "demandeDossier": {
+      "home": {
+        "title": "Demande Dossiers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Demande Dossier",
+        "createOrEditLabel": "Create or edit a Demande Dossier",
+        "notFound": "No Demande Dossiers found"
+      },
+      "created": "A new Demande Dossier is created with identifier {{ param }}",
+      "updated": "A Demande Dossier is updated with identifier {{ param }}",
+      "deleted": "A Demande Dossier is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Demande Dossier {{ id }}?"
+      },
+      "detail": {
+        "title": "Demande Dossier"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "dateNaissance": "Date Naissance",
+      "matricule": "Matricule",
+      "typeDossier": "Type Dossier",
+      "annee": "Annee",
+      "serie": "Serie",
+      "filiere": "Filiere",
+      "nomSemestre": "Nom Semestre",
+      "niveau": "Niveau",
+      "typeReleve": "Type Releve",
+      "nomDiplome": "Nom Diplome",
+      "photo": "Photo",
+      "apprenant": "Apprenant",
+      "bulletin": "Bulletin",
+      "releveNote": "Releve Note",
+      "carteScolaire": "Carte Scolaire",
+      "etatDemande": "Etat Demande"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "dbGestionMatricule5App": {
+    "carteScolaire": {
+      "home": {
+        "title": "CarteScolaires",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Carte Scolaire",
+        "createOrEditLabel": "Créer ou éditer un Carte Scolaire",
+        "notFound": "Aucun Carte Scolaire trouvé"
+      },
+      "created": "Un nouveau Carte Scolaire a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Carte Scolaire avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Carte Scolaire avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Carte Scolaire {{ id }} ?"
+      },
+      "detail": {
+        "title": "Carte Scolaire"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "photo": "Photo",
+      "annee": "Annee",
+      "longeur": "Longeur",
+      "largeur": "Largeur",
+      "demandeDossier": "Demande Dossier",
+      "apprenant": "Apprenant"
+    }
+  }
+}

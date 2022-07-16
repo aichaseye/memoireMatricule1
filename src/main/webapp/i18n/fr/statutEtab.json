@@ -1,0 +1,9 @@
+{
+  "dbGestionMatricule5App": {
+    "StatutEtab": {
+      "null": "",
+      "Prive": "Prive",
+      "Public": "Public"
+    }
+  }
+}

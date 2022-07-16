@@ -1,0 +1,134 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716215817",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "apprenant",
+  "fields": [
+    {
+      "fieldName": "nomCompletApp",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "email": true,
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "matriculeApp",
+      "fieldType": "String",
+      "options": {
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Masclin,Feminin"
+    },
+    {
+      "fieldName": "nationalite",
+      "fieldType": "Nationalite",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Senegalais,Autre"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Apprenant",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "inscription",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "inscription",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "releveNote",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "releveNote",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "bulletin",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "bulletin",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "diplome",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "diplome",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "observation",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "observation",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "carteScolaire",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "carteScolaire",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nomEtab",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "niveau",
+      "otherEntityName": "niveauEtude",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "niveauEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "demandeMatApp",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "demandeMatApp",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "demandeDossier",
+      "otherEntityRelationshipName": "apprenant",
+      "relationshipName": "demandeDossier",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

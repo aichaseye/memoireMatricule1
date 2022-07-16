@@ -1,0 +1,105 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeDossier">
+      <h2 data-cy="demandeDossierDetailsHeading">
+        <span jhiTranslate="dbGestionMatricule5App.demandeDossier.detail.title">Demande Dossier</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ demandeDossier.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.nom">Nom</span></dt>
+        <dd>
+          <span>{{ demandeDossier.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ demandeDossier.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.email">Email</span></dt>
+        <dd>
+          <span>{{ demandeDossier.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.dateNaissance">Date Naissance</span></dt>
+        <dd>
+          <span>{{ demandeDossier.dateNaissance | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.matricule">Matricule</span></dt>
+        <dd>
+          <span>{{ demandeDossier.matricule }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.typeDossier">Type Dossier</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.TypeDossier.' + demandeDossier.typeDossier }}">{{
+            demandeDossier.typeDossier
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.annee">Annee</span></dt>
+        <dd>
+          <span>{{ demandeDossier.annee | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.serie">Serie</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Serie.' + demandeDossier.serie }}">{{ demandeDossier.serie }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.filiere">Filiere</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Filiere.' + demandeDossier.filiere }}">{{ demandeDossier.filiere }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.nomSemestre">Nom Semestre</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.NomSemestre.' + demandeDossier.nomSemestre }}">{{
+            demandeDossier.nomSemestre
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.niveau">Niveau</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Niveau.' + demandeDossier.niveau }}">{{ demandeDossier.niveau }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.typeReleve">Type Releve</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.TypeReleve.' + demandeDossier.typeReleve }}">{{ demandeDossier.typeReleve }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.nomDiplome">Nom Diplome</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.NomDiplome.' + demandeDossier.nomDiplome }}">{{ demandeDossier.nomDiplome }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="demandeDossier.photo">
+            <a (click)="openFile(demandeDossier.photo, demandeDossier.photoContentType)">
+              <img
+                [src]="'data:' + demandeDossier.photoContentType + ';base64,' + demandeDossier.photo"
+                style="max-width: 100%"
+                alt="demandeDossier image"
+              />
+            </a>
+            {{ demandeDossier.photoContentType }}, {{ byteSize(demandeDossier.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.demandeDossier.etatDemande">Etat Demande</span></dt>
+        <dd>
+          <div *ngIf="demandeDossier.etatDemande">
+            <a [routerLink]="['/etat-demande', demandeDossier.etatDemande?.id, 'view']">{{ demandeDossier.etatDemande?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande-dossier', demandeDossier.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

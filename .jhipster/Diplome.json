@@ -1,0 +1,48 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716220017",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "diplome",
+  "fields": [
+    {
+      "fieldName": "nomDiplome",
+      "fieldType": "NomDiplome",
+      "fieldValues": "CAP,BTS,BT,CPS,BEP,CQP,TS,METP,BTI,TitreProfessionnel,CAEP"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Diplome",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomEtab",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomCompletApp",
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "apprenant",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "etatDemande",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "etatDemande",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

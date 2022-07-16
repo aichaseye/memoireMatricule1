@@ -1,0 +1,43 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716221117",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "programme",
+  "fields": [
+    {
+      "fieldName": "nomModule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "coef",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Programme",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "classe",
+      "otherEntityRelationshipName": "programme",
+      "relationshipName": "classe",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "moyenne",
+      "otherEntityName": "releveNote",
+      "otherEntityRelationshipName": "programme",
+      "ownerSide": true,
+      "relationshipName": "releveNote",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,125 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716215717",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "etablissement",
+  "fields": [
+    {
+      "fieldName": "nomEtab",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "typeEtab",
+      "fieldType": "TypeEtab",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LyceeTechnique,CFP"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutEtab",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Prive,Public"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "options": {
+        "email": true,
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "latitude",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "longitude",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "matriculeEtab",
+      "fieldType": "String",
+      "options": {
+        "unique": true
+      }
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Etablissement",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "bon",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "bon",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "apprenant",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "personnel",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "personnel",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "classe",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "classe",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "diplome",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "diplome",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "demandeMatEtab",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "demandeMatEtab",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "departement",
+      "otherEntityName": "localite",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "localite",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomInsp",
+      "otherEntityName": "inspection",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "inspection",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "filiere",
+      "otherEntityName": "filiereEtude",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "filiereEtude",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "serie",
+      "otherEntityName": "serieEtude",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "serieEtude",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

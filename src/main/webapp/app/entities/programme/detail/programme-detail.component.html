@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="programme">
+      <h2 data-cy="programmeDetailsHeading"><span jhiTranslate="dbGestionMatricule5App.programme.detail.title">Programme</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ programme.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.programme.nomModule">Nom Module</span></dt>
+        <dd>
+          <span>{{ programme.nomModule }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.programme.coef">Coef</span></dt>
+        <dd>
+          <span>{{ programme.coef }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.programme.note">Note</span></dt>
+        <dd>
+          <span>{{ programme.note }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.programme.releveNote">Releve Note</span></dt>
+        <dd>
+          <span *ngFor="let releveNote of programme.releveNotes; let last = last">
+            <a [routerLink]="['/releve-note', releveNote?.id, 'view']">{{ releveNote.moyenne }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/programme', programme.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

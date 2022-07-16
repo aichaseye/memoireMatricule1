@@ -1,0 +1,56 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716220317",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "personnel",
+  "fields": [
+    {
+      "fieldName": "nomPers",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prenomPers",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "responsabilite",
+      "fieldType": "Responsabilite",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Comptable_matiere,Proviseur,Chef_travaux,BFPA,Admin,Directeur,Surveillant"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "email": true,
+        "unique": true
+      }
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Personnel",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomEtab",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "personnel",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomInsp",
+      "otherEntityName": "inspection",
+      "otherEntityRelationshipName": "personnel",
+      "relationshipName": "inspection",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

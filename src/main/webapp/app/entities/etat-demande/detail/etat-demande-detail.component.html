@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etatDemande">
+      <h2 data-cy="etatDemandeDetailsHeading"><span jhiTranslate="dbGestionMatricule5App.etatDemande.detail.title">Etat Demande</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ etatDemande.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etatDemande.matricule">Matricule</span></dt>
+        <dd>
+          <span>{{ etatDemande.matricule }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etatDemande.typeDossier">Type Dossier</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.TypeDossier.' + etatDemande.typeDossier }}">{{ etatDemande.typeDossier }}</span>
+        </dd>
+        <dt><span jhiTranslate="dbGestionMatricule5App.etatDemande.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'dbGestionMatricule5App.Status.' + etatDemande.status }}">{{ etatDemande.status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etat-demande', etatDemande.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "dbGestionMatricule5App": {
+    "observation": {
+      "home": {
+        "title": "Observations",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Observation",
+        "createOrEditLabel": "Créer ou éditer un Observation",
+        "notFound": "Aucun Observation trouvé"
+      },
+      "created": "Un nouveau Observation a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Observation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Observation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Observation {{ id }} ?"
+      },
+      "detail": {
+        "title": "Observation"
+      },
+      "id": "ID",
+      "asuduite": "Asuduite",
+      "ponctualite": "Ponctualite",
+      "apte": "Apte",
+      "apprenant": "Apprenant"
+    }
+  }
+}

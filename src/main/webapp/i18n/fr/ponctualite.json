@@ -1,0 +1,10 @@
+{
+  "dbGestionMatricule5App": {
+    "Ponctualite": {
+      "null": "",
+      "OUI": "OUI",
+      "NON": "NON",
+      "ASSEZ": "ASSEZ"
+    }
+  }
+}

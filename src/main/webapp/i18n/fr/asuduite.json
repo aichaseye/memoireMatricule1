@@ -1,0 +1,13 @@
+{
+  "dbGestionMatricule5App": {
+    "Asuduite": {
+      "null": "",
+      "OUI": "OUI",
+      "NON": "NON",
+      "ASSEZ": "ASSEZ",
+      "ABANDON": "ABANDON",
+      "TRANSFERT": "TRANSFERT",
+      "EXCLUSION": "EXCLUSION"
+    }
+  }
+}

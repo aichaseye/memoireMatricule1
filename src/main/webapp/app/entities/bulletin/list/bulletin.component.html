@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="BulletinHeading">
+    <span jhiTranslate="dbGestionMatricule5App.bulletin.home.title">Bulletins</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="dbGestionMatricule5App.bulletin.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-bulletin"
+        [routerLink]="['/bulletin/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="dbGestionMatricule5App.bulletin.home.createLabel"> Create a new Bulletin </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="bulletins?.length === 0">
+    <span jhiTranslate="dbGestionMatricule5App.bulletin.home.notFound">No bulletins found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="bulletins && bulletins.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomsemestre">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.nomsemestre">Nomsemestre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="annee">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.annee">Annee</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="moyenne">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.moyenne">Moyenne</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="serie">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.serie">Serie</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="filiere">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.filiere">Filiere</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="niveau">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.niveau">Niveau</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="moyenneGenerale">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.moyenneGenerale">Moyenne Generale</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rang">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.rang">Rang</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="noteConduite">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.noteConduite">Note Conduite</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="matricule">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.matricule">Matricule</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="apprenant.nomCompletApp">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.apprenant">Apprenant</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="demandeDossier.id">
+            <span jhiTranslate="dbGestionMatricule5App.bulletin.demandeDossier">Demande Dossier</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let bulletin of bulletins; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/bulletin', bulletin.id, 'view']">{{ bulletin.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'dbGestionMatricule5App.NomSemestre.' + bulletin.nomsemestre }}">{{ bulletin.nomsemestre }}</td>
+          <td>{{ bulletin.annee | formatMediumDate }}</td>
+          <td>{{ bulletin.moyenne }}</td>
+          <td jhiTranslate="{{ 'dbGestionMatricule5App.Serie.' + bulletin.serie }}">{{ bulletin.serie }}</td>
+          <td jhiTranslate="{{ 'dbGestionMatricule5App.Filiere.' + bulletin.filiere }}">{{ bulletin.filiere }}</td>
+          <td jhiTranslate="{{ 'dbGestionMatricule5App.Niveau.' + bulletin.niveau }}">{{ bulletin.niveau }}</td>
+          <td>{{ bulletin.moyenneGenerale }}</td>
+          <td>{{ bulletin.rang }}</td>
+          <td>{{ bulletin.noteConduite }}</td>
+          <td>{{ bulletin.matricule }}</td>
+          <td>
+            <div *ngIf="bulletin.apprenant">
+              <a [routerLink]="['/apprenant', bulletin.apprenant?.id, 'view']">{{ bulletin.apprenant?.nomCompletApp }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="bulletin.demandeDossier">
+              <a [routerLink]="['/demande-dossier', bulletin.demandeDossier?.id, 'view']">{{ bulletin.demandeDossier?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/bulletin', bulletin.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/bulletin', bulletin.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(bulletin)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

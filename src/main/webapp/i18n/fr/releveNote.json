@@ -1,0 +1,37 @@
+{
+  "dbGestionMatricule5App": {
+    "releveNote": {
+      "home": {
+        "title": "ReleveNotes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Releve Note",
+        "createOrEditLabel": "Créer ou éditer un Releve Note",
+        "notFound": "Aucun Releve Note trouvé"
+      },
+      "created": "Un nouveau Releve Note a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Releve Note avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Releve Note avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Releve Note {{ id }} ?"
+      },
+      "detail": {
+        "title": "Releve Note"
+      },
+      "id": "ID",
+      "annee": "Annee",
+      "moyenne": "Moyenne",
+      "serie": "Serie",
+      "filiere": "Filiere",
+      "niveau": "Niveau",
+      "moyenneGenerale": "Moyenne Generale",
+      "rang": "Rang",
+      "noteConduite": "Note Conduite",
+      "matriculeRel": "Matricule Rel",
+      "apprenant": "Apprenant",
+      "filiereEtude": "Filiere Etude",
+      "serieEtude": "Serie Etude",
+      "demandeDossier": "Demande Dossier",
+      "programme": "Programme"
+    }
+  }
+}

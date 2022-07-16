@@ -1,0 +1,130 @@
+{
+  "applications": ["db_gestion_Matricule5"],
+  "changelogDate": "20220716221417",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "demande_dossier",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "email": true,
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "matricule",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "typeDossier",
+      "fieldType": "TypeDossier",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Diplome,Attestation,Bulletin,Releve,CarteScolaire,Verification"
+    },
+    {
+      "fieldName": "annee",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "serie",
+      "fieldType": "Serie",
+      "fieldValues": "STEG,STIDD_E,STIDD_M,S3,S4,S5,F6"
+    },
+    {
+      "fieldName": "filiere",
+      "fieldType": "Filiere",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Agricultre,Peche,Elevage,Mine_Cariere,Artisanat,Batiment_TraveauxPublics,Mecanique,MenuiserieBois,Habillement,Agroalimentaire,Electronique,Electrotechnique,Energetique,Hydrolique,Structure_Metallique,Structure_Plastique,Beaute_Esthetique,Developpement_Territorial,Droit,Economie_et_gestionLogistique,Industrie_cultirelle_et_creative,Informatique_et_numerique,Restauration_Htellerie,Sante,Biologie_chimie,Sport,Tourisme,Environnement"
+    },
+    {
+      "fieldName": "nomSemestre",
+      "fieldType": "NomSemestre",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Semestre1,Semestre2,Semestre3"
+    },
+    {
+      "fieldName": "niveau",
+      "fieldType": "Niveau",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CAP1,CAP2,CAP3,BTS1,BTS2,BT1,BT2,BT3,CPS,BEP1,BEP2,BEP3,CQP,ChefEquipe,ChefChantier,TechnicienSpecialise,METP,BTI,TitreProfessionnel"
+    },
+    {
+      "fieldName": "typeReleve",
+      "fieldType": "TypeReleve",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Admis,Ajourne"
+    },
+    {
+      "fieldName": "nomDiplome",
+      "fieldType": "NomDiplome",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CAP,BTS,BT,CPS,BEP,CQP,TS,METP,BTI,TitreProfessionnel,CAEP"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DemandeDossier",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "demandeDossier",
+      "relationshipName": "apprenant",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "bulletin",
+      "otherEntityRelationshipName": "demandeDossier",
+      "relationshipName": "bulletin",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "releveNote",
+      "otherEntityRelationshipName": "demandeDossier",
+      "relationshipName": "releveNote",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "carteScolaire",
+      "otherEntityRelationshipName": "demandeDossier",
+      "relationshipName": "carteScolaire",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "etatDemande",
+      "otherEntityRelationshipName": "demandeDossier",
+      "relationshipName": "etatDemande",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
