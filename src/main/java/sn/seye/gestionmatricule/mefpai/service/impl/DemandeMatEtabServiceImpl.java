@@ -1,6 +1,9 @@
 package sn.seye.gestionmatricule.mefpai.service.impl;
 
+import java.util.Calendar;
 import java.util.Optional;
+import java.util.Random;
+import liquibase.repackaged.net.sf.jsqlparser.expression.operators.arithmetic.Concat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -8,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sn.seye.gestionmatricule.mefpai.domain.DemandeMatEtab;
+import sn.seye.gestionmatricule.mefpai.domain.Etablissement;
 import sn.seye.gestionmatricule.mefpai.repository.DemandeMatEtabRepository;
 import sn.seye.gestionmatricule.mefpai.service.DemandeMatEtabService;
 
@@ -29,6 +33,25 @@ public class DemandeMatEtabServiceImpl implements DemandeMatEtabService {
     @Override
     public DemandeMatEtab save(DemandeMatEtab demandeMatEtab) {
         log.debug("Request to save DemandeMatEtab : {}", demandeMatEtab);
+
+        String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        String date = String.valueOf(System.currentTimeMillis());
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random rnd = new Random();
+
+        String matricule = year
+            .substring(year.length() - 2)
+            .concat(demandeMatEtab.getNomEtab().substring(demandeMatEtab.getNomEtab().length() - 2))
+            .concat(date.substring(date.length() - 4));
+
+        demandeMatEtab.setMatriculeEtab(matricule);
+
+        // Etablissement et = demandeMatEtab.getEtablissement();
+        // if (et.getMatriculeEtab() == null || et.getMatriculeEtab().equals("")) {
+        //     et.setMatriculeEtab(matricule);
+        //     demandeMatEtab.setEtablissement(et);
+        // }
+
         return demandeMatEtabRepository.save(demandeMatEtab);
     }
 

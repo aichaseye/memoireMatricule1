@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="DemandeMatEtabHeading">
-    <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.home.title">Demande Mat Etabs</span>
+    <span>demandes matricule </span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
@@ -9,6 +9,12 @@
       </button>
 
       <button
+        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_PROVISEUR', 'ROLE_DIRECTEUR', 'ROLE_CHEF_TRAVAUX']"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-demande-mat-etab"
@@ -27,100 +33,128 @@
   <div class="alert alert-warning" id="no-result" *ngIf="demandeMatEtabs?.length === 0">
     <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.home.notFound">No demandeMatEtabs found</span>
   </div>
-
-  <div class="table-responsive" id="entities" *ngIf="demandeMatEtabs && demandeMatEtabs.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="nom">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.nom">Nom</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="prenom">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.prenom">Prenom</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="responsabilite">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.responsabilite">Responsabilite</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="nomEtab">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.nomEtab">Nom Etab</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="departement">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.departement">Departement</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="typeEtab">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeEtab">Type Etab</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="statut">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.statut">Statut</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="typeInsp">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeInsp">Type Insp</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="email">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.email">Email</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="matriculeEtab">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.matriculeEtab">Matricule Etab</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="etablissement.nomEtab">
-            <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.etablissement">Etablissement</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-        <tr *ngFor="let demandeMatEtab of demandeMatEtabs; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/demande-mat-etab', demandeMatEtab.id, 'view']">{{ demandeMatEtab.id }}</a>
-          </td>
-          <td>{{ demandeMatEtab.nom }}</td>
-          <td>{{ demandeMatEtab.prenom }}</td>
-          <td jhiTranslate="{{ 'dbGestionMatricule5App.Responsabilite.' + demandeMatEtab.responsabilite }}">
-            {{ demandeMatEtab.responsabilite }}
-          </td>
-          <td>{{ demandeMatEtab.nomEtab }}</td>
-          <td jhiTranslate="{{ 'dbGestionMatricule5App.NomDep.' + demandeMatEtab.departement }}">{{ demandeMatEtab.departement }}</td>
-          <td jhiTranslate="{{ 'dbGestionMatricule5App.TypeEtab.' + demandeMatEtab.typeEtab }}">{{ demandeMatEtab.typeEtab }}</td>
-          <td jhiTranslate="{{ 'dbGestionMatricule5App.StatutEtab.' + demandeMatEtab.statut }}">{{ demandeMatEtab.statut }}</td>
-          <td jhiTranslate="{{ 'dbGestionMatricule5App.TypeInspection.' + demandeMatEtab.typeInsp }}">{{ demandeMatEtab.typeInsp }}</td>
-          <td>{{ demandeMatEtab.email }}</td>
-          <td>{{ demandeMatEtab.matriculeEtab }}</td>
-          <td>
-            <div *ngIf="demandeMatEtab.etablissement">
-              <a [routerLink]="['/etablissement', demandeMatEtab.etablissement?.id, 'view']">{{ demandeMatEtab.etablissement?.nomEtab }}</a>
-            </div>
-          </td>
-          <td class="text-end">
-            <div class="btn-group">
-              <button
-                type="submit"
-                [routerLink]="['/demande-mat-etab', demandeMatEtab.id, 'view']"
-                class="btn btn-info btn-sm"
-                data-cy="entityDetailsButton"
+  <div
+    *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_BFPA']"
+    ngbDropdown
+    class="nav-item dropdown pointer"
+    display="dynamic"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <div class="table-responsive" id="entities" *ngIf="demandeMatEtabs && demandeMatEtabs.length > 0">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+            <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col" jhiSortBy="nom">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.nom">Nom</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="prenom">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.prenom">Prenom</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="responsabilite">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.responsabilite">Responsabilite</span>
+              <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="nomEtab">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.nomEtab">Nom Etab</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="departement">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.departement">Departement</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="typeEtab">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeEtab">Type Etab</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="statut">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.statut">Statut</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="typeInsp">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeInsp">Type Insp</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="email">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.email">Email</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="matriculeEtab">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.matriculeEtab">Matricule Etab</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col" jhiSortBy="etablissement.nomEtab">
+              <span jhiTranslate="dbGestionMatricule5App.demandeMatEtab.etablissement">Etablissement</span> <fa-icon icon="sort"></fa-icon>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody
+          infinite-scroll
+          (scrolled)="loadPage(page + 1)"
+          [infiniteScrollDisabled]="page >= links['last']"
+          [infiniteScrollDistance]="0"
+        >
+          <tr *ngFor="let demandeMatEtab of demandeMatEtabs; trackBy: trackId" data-cy="entityTable">
+            <td>
+              <a [routerLink]="['/demande-mat-etab', demandeMatEtab.id, 'view']">{{ demandeMatEtab.id }}</a>
+            </td>
+            <td>{{ demandeMatEtab.nom }}</td>
+            <td>{{ demandeMatEtab.prenom }}</td>
+            <td jhiTranslate="{{ 'dbGestionMatricule5App.Responsabilite.' + demandeMatEtab.responsabilite }}">
+              {{ demandeMatEtab.responsabilite }}
+            </td>
+            <td>{{ demandeMatEtab.nomEtab }}</td>
+            <td jhiTranslate="{{ 'dbGestionMatricule5App.NomDep.' + demandeMatEtab.departement }}">{{ demandeMatEtab.departement }}</td>
+            <td jhiTranslate="{{ 'dbGestionMatricule5App.TypeEtab.' + demandeMatEtab.typeEtab }}">{{ demandeMatEtab.typeEtab }}</td>
+            <td jhiTranslate="{{ 'dbGestionMatricule5App.StatutEtab.' + demandeMatEtab.statut }}">{{ demandeMatEtab.statut }}</td>
+            <td jhiTranslate="{{ 'dbGestionMatricule5App.TypeInspection.' + demandeMatEtab.typeInsp }}">{{ demandeMatEtab.typeInsp }}</td>
+            <td>{{ demandeMatEtab.email }}</td>
+            <td>{{ demandeMatEtab.matriculeEtab }}</td>
+            <td>
+              <div *ngIf="demandeMatEtab.etablissement">
+                <a [routerLink]="['/etablissement', demandeMatEtab.etablissement?.id, 'view']">{{
+                  demandeMatEtab.etablissement?.nomEtab
+                }}</a>
+              </div>
+            </td>
+            <td class="text-end">
+              <div
+                *jhiHasAnyAuthority="['ROLE_ADMIN']"
+                ngbDropdown
+                class="nav-item dropdown pointer"
+                display="dynamic"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
               >
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-              </button>
+                <div>
+                  <div class="btn-group">
+                    <button
+                      type="submit"
+                      [routerLink]="['/demande-mat-etab', demandeMatEtab.id, 'view']"
+                      class="btn btn-info btn-sm"
+                      data-cy="entityDetailsButton"
+                    >
+                      <fa-icon icon="eye"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <!-- kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk -->
 
-              <button
-                type="submit"
-                [routerLink]="['/demande-mat-etab', demandeMatEtab.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
+                    <button
+                      type="submit"
+                      [routerLink]="['/demande-mat-etab', demandeMatEtab.id, 'edit']"
+                      class="btn btn-primary btn-sm"
+                      data-cy="entityEditButton"
+                    >
+                      <fa-icon icon="pencil-alt"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
 
-              <button type="submit" (click)="delete(demandeMatEtab)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                    <button type="submit" (click)="delete(demandeMatEtab)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                      <fa-icon icon="times"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

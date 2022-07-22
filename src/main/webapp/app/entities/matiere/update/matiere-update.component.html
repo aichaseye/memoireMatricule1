@@ -16,6 +16,27 @@
           <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
+        <!-- NOM AJOUTE -->
+        <!-- <div class="row mb-3">
+          <label class="form-label" for="field_nom">Nom </label>
+          <input
+            type="text"
+            class="form-control"
+            name="nom"
+            id="field_nom"
+            data-cy="nom"
+            formControlName="nom"
+          />
+          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomMatiere')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div> -->
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.matiere.nomMatiere" for="field_nomMatiere">Nom Matiere</label>

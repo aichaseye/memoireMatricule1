@@ -1,13 +1,21 @@
-<jhi-page-ribbon></jhi-page-ribbon>
-
+<!-- <jhi-page-ribbon></jhi-page-ribbon> -->
 <div>
-  <router-outlet name="navbar"></router-outlet>
-</div>
-
-<div class="container-fluid">
-  <div class="card jh-card">
-    <router-outlet></router-outlet>
+  <!-- header -->
+  <div class="header"></div>
+  <!-- navBar -->
+  <div>
+    <router-outlet name="navbar"></router-outlet>
+  </div>
+  <!-- contenu -->
+  <div class="container-fluid">
+    <div class="card jh-card">
+      <router-outlet></router-outlet>
+      <!-- <div><span class="drapeau3 img-fluid rounded"></span></div> -->
+    </div>
   </div>
 
-  <jhi-footer></jhi-footer>
+  <!-- footer -->
+  <div>
+    <jhi-footer></jhi-footer>
+  </div>
 </div>

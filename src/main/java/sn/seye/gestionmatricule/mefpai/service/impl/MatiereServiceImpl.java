@@ -1,6 +1,8 @@
 package sn.seye.gestionmatricule.mefpai.service.impl;
 
+import java.util.Calendar;
 import java.util.Optional;
+import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -29,6 +31,22 @@ public class MatiereServiceImpl implements MatiereService {
     @Override
     public Matiere save(Matiere matiere) {
         log.debug("Request to save Matiere : {}", matiere);
+
+        String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        String date = String.valueOf(System.currentTimeMillis());
+
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random rnd = new Random();
+        char letter = alphabet.charAt(rnd.nextInt(alphabet.length()));
+
+        String matricule = year
+            .substring(year.length() - 2)
+            .concat(matiere.getReference().substring(matiere.getReference().length() - 2))
+            .concat(date.substring(date.length() - 4))
+            .concat(String.valueOf(letter));
+
+        matiere.setMatriculeMatiere(matricule);
+
         return matiereRepository.save(matiere);
     }
 

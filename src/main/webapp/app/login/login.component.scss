@@ -1,0 +1,37 @@
+.mylogo2 {
+  display: inline-block;
+  width: 900px;
+  height: 400px;
+  background: url('../../content/images/mylogo2.png');
+  // background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
+  background-size: cover;
+}
+
+.col-md-4 {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: rgb(226, 190, 118);
+}
+.form {
+  position: relative;
+  top: 20px;
+}
+
+.btn {
+  font-weight: bold;
+  color: white;
+  position: relative;
+  text-align: center;
+  background-color: rgb(90, 103, 223);
+  left: 30%;
+}
+.username-label {
+  font-weight: bold;
+  color: white;
+}
+.pass {
+  font-weight: bold;
+  color: white;
+}

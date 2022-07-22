@@ -1,6 +1,8 @@
 package sn.seye.gestionmatricule.mefpai.service.impl;
 
+import java.util.Calendar;
 import java.util.Optional;
+import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sn.seye.gestionmatricule.mefpai.domain.DemandeMatApp;
+import sn.seye.gestionmatricule.mefpai.domain.enumeration.Sexe;
 import sn.seye.gestionmatricule.mefpai.repository.DemandeMatAppRepository;
 import sn.seye.gestionmatricule.mefpai.service.DemandeMatAppService;
 
@@ -29,6 +32,26 @@ public class DemandeMatAppServiceImpl implements DemandeMatAppService {
     @Override
     public DemandeMatApp save(DemandeMatApp demandeMatApp) {
         log.debug("Request to save DemandeMatApp : {}", demandeMatApp);
+
+        String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        String date = String.valueOf(System.currentTimeMillis());
+
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random rnd = new Random();
+        char letter = alphabet.charAt(rnd.nextInt(alphabet.length()));
+
+        String sexe = "M";
+        if (demandeMatApp.getSexe().equals(Sexe.Feminin)) {
+            sexe = "F";
+        }
+        String matricule = year
+            .substring(year.length() - 2)
+            .concat(sexe)
+            .concat(date.substring(date.length() - 4))
+            .concat(String.valueOf(letter));
+
+        demandeMatApp.setMatriculeApp(matricule);
+
         return demandeMatAppRepository.save(demandeMatApp);
     }
 

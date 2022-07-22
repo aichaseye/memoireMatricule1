@@ -6,17 +6,17 @@
         data-cy="DemandeMatAppCreateUpdateHeading"
         jhiTranslate="dbGestionMatricule5App.demandeMatApp.home.createOrEditLabel"
       >
-        Create or edit a Demande Mat App
+        Demande de matricule
       </h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
-
+        <!-- id -->
         <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
           <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
-
+        <!-- nom -->
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatApp.nom" for="field_nom">Nom</label>
           <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
@@ -26,7 +26,7 @@
             </small>
           </div>
         </div>
-
+        <!-- prenom -->
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatApp.prenom" for="field_prenom">Prenom</label>
           <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
@@ -36,7 +36,7 @@
             </small>
           </div>
         </div>
-
+        <!-- email -->
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatApp.email" for="field_email">Email</label>
           <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
@@ -46,7 +46,7 @@
             </small>
           </div>
         </div>
-
+        <!-- telephone -->
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatApp.telephone" for="field_telephone">Telephone</label>
           <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
@@ -60,7 +60,7 @@
             </small>
           </div>
         </div>
-
+        <!-- date de naissance -->
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatApp.dateNaissance" for="field_dateNaissance"
             >Date Naissance</label
@@ -94,7 +94,7 @@
             </small>
           </div>
         </div>
-
+        <!-- sexe -->
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatApp.sexe" for="field_sexe">Sexe</label>
           <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
@@ -107,8 +107,16 @@
             </small>
           </div>
         </div>
-
-        <div class="row mb-3">
+        <!-- matricule -->
+        <div
+          class="row mb-3"
+          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_BFPA']"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatApp.matriculeApp" for="field_matriculeApp"
             >Matricule App</label
           >

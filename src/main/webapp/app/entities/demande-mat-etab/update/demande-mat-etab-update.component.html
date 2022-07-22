@@ -138,7 +138,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.typeInsp" for="field_typeInsp">Type Insp</label>
+          <label class="form-label" for="field_typeInsp">Type Inspection</label>
           <select class="form-control" name="typeInsp" formControlName="typeInsp" id="field_typeInsp" data-cy="typeInsp">
             <option [ngValue]="null">{{ 'dbGestionMatricule5App.TypeInspection.null' | translate }}</option>
             <option *ngFor="let typeInspection of typeInspectionValues" [value]="typeInspection">
@@ -155,7 +155,7 @@
             </small>
           </div>
         </div>
-
+        <!-- email -->
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.email" for="field_email">Email</label>
           <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
@@ -165,8 +165,16 @@
             </small>
           </div>
         </div>
-
-        <div class="row mb-3">
+        <!-- matricule etab -->
+        <div
+          class="row mb-3"
+          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_PROVISEUR']"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.matriculeEtab" for="field_matriculeEtab"
             >Matricule Etab</label
           >

@@ -97,6 +97,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+
+             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.PROVISEUR)
+            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.DIRECTEUR)
+            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.BFPA)
+            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.CHEF_TRAVAUX)
+            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.COMPTABLE_MATIERE)
+            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.APPRENANT)
         .and()
             .httpBasic()
         .and()

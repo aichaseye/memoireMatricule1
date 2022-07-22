@@ -1,304 +1,315 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2
-        id="jhi-demande-dossier-heading"
-        data-cy="DemandeDossierCreateUpdateHeading"
-        jhiTranslate="dbGestionMatricule5App.demandeDossier.home.createOrEditLabel"
-      >
-        Create or edit a Demande Dossier
-      </h2>
-
+      <h2 id="jhi-demande-dossier-heading" data-cy="DemandeDossierCreateUpdateHeading">Create or edit a Demande Dossier</h2>
+      <!-- ici filtre -->
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+        <!-- <div class="form-group" [hidden]="editForm.get('id')!.value == null">
           <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.nom" for="field_nom">Nom</label>
-          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
-          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.prenom" for="field_prenom">Prenom</label>
-          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
-          <div *ngIf="editForm.get('prenom')!.invalid && (editForm.get('prenom')!.dirty || editForm.get('prenom')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('prenom')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.email" for="field_email">Email</label>
-          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
-          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.dateNaissance" for="field_dateNaissance"
-            >Date Naissance</label
-          >
-          <div class="input-group">
-            <input
-              id="field_dateNaissance"
-              data-cy="dateNaissance"
-              type="text"
-              class="form-control"
-              name="dateNaissance"
-              ngbDatepicker
-              #dateNaissanceDp="ngbDatepicker"
-              formControlName="dateNaissance"
-            />
-            <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
-          <div
-            *ngIf="
-              editForm.get('dateNaissance')!.invalid && (editForm.get('dateNaissance')!.dirty || editForm.get('dateNaissance')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('dateNaissance')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.matricule" for="field_matricule">Matricule</label>
-          <input type="text" class="form-control" name="matricule" id="field_matricule" data-cy="matricule" formControlName="matricule" />
-          <div *ngIf="editForm.get('matricule')!.invalid && (editForm.get('matricule')!.dirty || editForm.get('matricule')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('matricule')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
+        </div> -->
+        <!-- filtrage type dossier -->
+        <div class="form-group">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.typeDossier" for="field_typeDossier"
             >Type Dossier</label
           >
           <select class="form-control" name="typeDossier" formControlName="typeDossier" id="field_typeDossier" data-cy="typeDossier">
             <option [ngValue]="null">{{ 'dbGestionMatricule5App.TypeDossier.null' | translate }}</option>
-            <option *ngFor="let typeDossier of typeDossierValues" [value]="typeDossier">
+            <!-- <option *ngFor="let typeDossier of typeDossierValues" [value]="typeDossier">
               {{ 'dbGestionMatricule5App.TypeDossier.' + typeDossier | translate }}
-            </option>
+            </option> -->
+            <option value="Diplome">Diplome</option>
+            <option value="Releve">Releve</option>
+            <option value="Bulletin">Bulletin</option>
+            <option value="Attestation">Attestation</option>
+            <option value="CarteScolaire">CarteScolaire</option>
+            <option value="Verification">Verification</option>
           </select>
-          <div *ngIf="editForm.get('typeDossier')!.invalid && (editForm.get('typeDossier')!.dirty || editForm.get('typeDossier')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('typeDossier')?.errors?.required"
-              jhiTranslate="entity.validation.required"
+        </div>
+        <!-- FILTRAGE diplome -->
+        <div *ngIf="editForm.value.typeDossier === 'Diplome'">
+          <!-- nom diplome -->
+          <div class="row mb-3">
+            <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.nomDiplome" for="field_nomDiplome"
+              >Nom Diplome</label
             >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.annee" for="field_annee">Annee</label>
-          <div class="input-group">
-            <input
-              id="field_annee"
-              data-cy="annee"
-              type="text"
-              class="form-control"
-              name="annee"
-              ngbDatepicker
-              #anneeDp="ngbDatepicker"
-              formControlName="annee"
-            />
-            <button type="button" class="btn btn-secondary" (click)="anneeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-          </div>
-          <div *ngIf="editForm.get('annee')!.invalid && (editForm.get('annee')!.dirty || editForm.get('annee')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('annee')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.serie" for="field_serie">Serie</label>
-          <select class="form-control" name="serie" formControlName="serie" id="field_serie" data-cy="serie">
-            <option [ngValue]="null">{{ 'dbGestionMatricule5App.Serie.null' | translate }}</option>
-            <option *ngFor="let serie of serieValues" [value]="serie">{{ 'dbGestionMatricule5App.Serie.' + serie | translate }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.filiere" for="field_filiere">Filiere</label>
-          <select class="form-control" name="filiere" formControlName="filiere" id="field_filiere" data-cy="filiere">
-            <option [ngValue]="null">{{ 'dbGestionMatricule5App.Filiere.null' | translate }}</option>
-            <option *ngFor="let filiere of filiereValues" [value]="filiere">
-              {{ 'dbGestionMatricule5App.Filiere.' + filiere | translate }}
-            </option>
-          </select>
-          <div *ngIf="editForm.get('filiere')!.invalid && (editForm.get('filiere')!.dirty || editForm.get('filiere')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('filiere')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.nomSemestre" for="field_nomSemestre"
-            >Nom Semestre</label
-          >
-          <select class="form-control" name="nomSemestre" formControlName="nomSemestre" id="field_nomSemestre" data-cy="nomSemestre">
-            <option [ngValue]="null">{{ 'dbGestionMatricule5App.NomSemestre.null' | translate }}</option>
-            <option *ngFor="let nomSemestre of nomSemestreValues" [value]="nomSemestre">
-              {{ 'dbGestionMatricule5App.NomSemestre.' + nomSemestre | translate }}
-            </option>
-          </select>
-          <div *ngIf="editForm.get('nomSemestre')!.invalid && (editForm.get('nomSemestre')!.dirty || editForm.get('nomSemestre')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('nomSemestre')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.niveau" for="field_niveau">Niveau</label>
-          <select class="form-control" name="niveau" formControlName="niveau" id="field_niveau" data-cy="niveau">
-            <option [ngValue]="null">{{ 'dbGestionMatricule5App.Niveau.null' | translate }}</option>
-            <option *ngFor="let niveau of niveauValues" [value]="niveau">
-              {{ 'dbGestionMatricule5App.Niveau.' + niveau | translate }}
-            </option>
-          </select>
-          <div *ngIf="editForm.get('niveau')!.invalid && (editForm.get('niveau')!.dirty || editForm.get('niveau')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('niveau')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.typeReleve" for="field_typeReleve"
-            >Type Releve</label
-          >
-          <select class="form-control" name="typeReleve" formControlName="typeReleve" id="field_typeReleve" data-cy="typeReleve">
-            <option [ngValue]="null">{{ 'dbGestionMatricule5App.TypeReleve.null' | translate }}</option>
-            <option *ngFor="let typeReleve of typeReleveValues" [value]="typeReleve">
-              {{ 'dbGestionMatricule5App.TypeReleve.' + typeReleve | translate }}
-            </option>
-          </select>
-          <div *ngIf="editForm.get('typeReleve')!.invalid && (editForm.get('typeReleve')!.dirty || editForm.get('typeReleve')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('typeReleve')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.nomDiplome" for="field_nomDiplome"
-            >Nom Diplome</label
-          >
-          <select class="form-control" name="nomDiplome" formControlName="nomDiplome" id="field_nomDiplome" data-cy="nomDiplome">
-            <option [ngValue]="null">{{ 'dbGestionMatricule5App.NomDiplome.null' | translate }}</option>
-            <option *ngFor="let nomDiplome of nomDiplomeValues" [value]="nomDiplome">
-              {{ 'dbGestionMatricule5App.NomDiplome.' + nomDiplome | translate }}
-            </option>
-          </select>
-          <div *ngIf="editForm.get('nomDiplome')!.invalid && (editForm.get('nomDiplome')!.dirty || editForm.get('nomDiplome')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('nomDiplome')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.photo" for="field_photo">Photo</label>
-          <div>
-            <img
-              [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value"
-              style="max-height: 100px"
-              *ngIf="editForm.get('photo')!.value"
-              alt="demandeDossier image"
-            />
-            <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
-              <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value) }}</span>
-              <button
-                type="button"
-                (click)="clearInputImage('photo', 'photoContentType', 'file_photo')"
-                class="btn btn-secondary btn-xs pull-end"
+            <select class="form-control" name="nomDiplome" formControlName="nomDiplome" id="field_nomDiplome" data-cy="nomDiplome">
+              <option [ngValue]="null">{{ 'dbGestionMatricule5App.NomDiplome.null' | translate }}</option>
+              <option *ngFor="let nomDiplome of nomDiplomeValues" [value]="nomDiplome">
+                {{ 'dbGestionMatricule5App.NomDiplome.' + nomDiplome | translate }}
+              </option>
+            </select>
+            <div *ngIf="editForm.get('nomDiplome')!.invalid && (editForm.get('nomDiplome')!.dirty || editForm.get('nomDiplome')!.touched)">
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get('nomDiplome')?.errors?.required"
+                jhiTranslate="entity.validation.required"
               >
-                <fa-icon icon="times"></fa-icon>
-              </button>
+                This field is required.
+              </small>
             </div>
+          </div>
+
+          <!-- serie -->
+          <div class="form-group">
+            <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.serie" for="field_serie">Serie</label>
+            <select class="form-control" name="serie" formControlName="serie" id="field_serie" data-cy="serie">
+              <option [ngValue]="null">{{ 'dbGestionMatricule5App.Serie.null' | translate }}</option>
+              <option *ngFor="let serie of serieValues" [value]="serie">{{ 'dbGestionMatricule5App.Serie.' + serie | translate }}</option>
+            </select>
+          </div>
+          <!-- filiere -->
+          <div class="form-group">
+            <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.filiere" for="field_filiere">Filiere</label>
+            <select class="form-control" name="filiere" formControlName="filiere" id="field_filiere" data-cy="filiere">
+              <option [ngValue]="null">{{ 'dbGestionMatricule5App.Filiere.null' | translate }}</option>
+              <option *ngFor="let filiere of filiereValues" [value]="filiere">
+                {{ 'dbGestionMatricule5App.Filiere.' + filiere | translate }}
+              </option>
+            </select>
+            <div *ngIf="editForm.get('filiere')!.invalid && (editForm.get('filiere')!.dirty || editForm.get('filiere')!.touched)">
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get('filiere')?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- filtege RELEVE -->
+        <div *ngIf="editForm.value.typeDossier === 'Releve'">
+          <!-- niveau -->
+          <div class="form-group">
+            <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.niveau" for="field_niveau">Niveau</label>
+            <select class="form-control" name="niveau" formControlName="niveau" id="field_niveau" data-cy="niveau">
+              <option [ngValue]="null">{{ 'dbGestionMatricule5App.Niveau.null' | translate }}</option>
+              <option *ngFor="let niveau of niveauValues" [value]="niveau">
+                {{ 'dbGestionMatricule5App.Niveau.' + niveau | translate }}
+              </option>
+            </select>
+            <div *ngIf="editForm.get('niveau')!.invalid && (editForm.get('niveau')!.dirty || editForm.get('niveau')!.touched)">
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get('niveau')?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+            </div>
+          </div>
+          <!-- type releve -->
+          <div class="form-group">
+            <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.typeReleve" for="field_typeReleve"
+              >Type Releve</label
+            >
+            <select class="form-control" name="typeReleve" formControlName="typeReleve" id="field_typeReleve" data-cy="typeReleve">
+              <option [ngValue]="null">{{ 'dbGestionMatricule5App.TypeReleve.null' | translate }}</option>
+              <option *ngFor="let typeReleve of typeReleveValues" [value]="typeReleve">
+                {{ 'dbGestionMatricule5App.TypeReleve.' + typeReleve | translate }}
+              </option>
+            </select>
+            <div *ngIf="editForm.get('typeReleve')!.invalid && (editForm.get('typeReleve')!.dirty || editForm.get('typeReleve')!.touched)">
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get('typeReleve')?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- filtrage bullin -->
+        <div *ngIf="editForm.value.typeDossier === 'Bulletin'">
+          <!-- semestre -->
+          <div class="form-group">
+            <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.nomSemestre" for="field_nomSemestre"
+              >Nom Semestre</label
+            >
+            <select class="form-control" name="nomSemestre" formControlName="nomSemestre" id="field_nomSemestre" data-cy="nomSemestre">
+              <option [ngValue]="null">{{ 'dbGestionMatricule5App.NomSemestre.null' | translate }}</option>
+              <option *ngFor="let nomSemestre of nomSemestreValues" [value]="nomSemestre">
+                {{ 'dbGestionMatricule5App.NomSemestre.' + nomSemestre | translate }}
+              </option>
+            </select>
+            <div
+              *ngIf="editForm.get('nomSemestre')!.invalid && (editForm.get('nomSemestre')!.dirty || editForm.get('nomSemestre')!.touched)"
+            >
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get('nomSemestre')?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+            </div>
+          </div>
+        </div>
+        <!-- filtrage carte -->
+        <div *ngIf="editForm.value.typeDossier === 'CarteScolaire'">
+          <!-- photo -->
+          <div class="row mb-3">
+            <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.photo" for="field_photo">Photo</label>
+            <div>
+              <img
+                [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value"
+                style="max-height: 100px"
+                *ngIf="editForm.get('photo')!.value"
+                alt="demandeDossier image"
+              />
+              <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+                <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value) }}</span>
+                <button
+                  type="button"
+                  (click)="clearInputImage('photo', 'photoContentType', 'file_photo')"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+              <input
+                type="file"
+                id="file_photo"
+                data-cy="photo"
+                (change)="setFileData($event, 'photo', true)"
+                accept="image/*"
+                jhiTranslate="entity.action.addimage"
+              />
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
             <input
-              type="file"
-              id="file_photo"
-              data-cy="photo"
-              (change)="setFileData($event, 'photo', true)"
-              accept="image/*"
-              jhiTranslate="entity.action.addimage"
+              type="hidden"
+              class="form-control"
+              name="photoContentType"
+              id="field_photoContentType"
+              formControlName="photoContentType"
             />
           </div>
-          <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
-          <input
-            type="hidden"
-            class="form-control"
-            name="photoContentType"
-            id="field_photoContentType"
-            formControlName="photoContentType"
-          />
         </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.etatDemande" for="field_etatDemande"
-            >Etat Demande</label
-          >
-          <select class="form-control" id="field_etatDemande" data-cy="etatDemande" name="etatDemande" formControlName="etatDemande">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="
-                etatDemandeOption.id === editForm.get('etatDemande')!.value?.id ? editForm.get('etatDemande')!.value : etatDemandeOption
-              "
-              *ngFor="let etatDemandeOption of etatDemandesSharedCollection; trackBy: trackEtatDemandeById"
+        <!-- verification -->
+        <div *ngIf="editForm.value.typeDossier === 'Verification'">
+          <!-- etat -->
+          <div class="row mb-3">
+            <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.etatDemande" for="field_etatDemande"
+              >Etat Demande</label
             >
-              {{ etatDemandeOption.id }}
-            </option>
-          </select>
+            <select class="form-control" id="field_etatDemande" data-cy="etatDemande" name="etatDemande" formControlName="etatDemande">
+              <option [ngValue]="null"></option>
+              <option
+                [ngValue]="
+                  etatDemandeOption.id === editForm.get('etatDemande')!.value?.id ? editForm.get('etatDemande')!.value : etatDemandeOption
+                "
+                *ngFor="let etatDemandeOption of etatDemandesSharedCollection; trackBy: trackEtatDemandeById"
+              >
+                {{ etatDemandeOption.id }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- nom -->
+      <div class="form-group">
+        <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.nom" for="field_nom">Nom</label>
+        <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
         </div>
       </div>
 
+      <!-- prenon -->
+      <div class="form-group">
+        <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.prenom" for="field_prenom">Prenom</label>
+        <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+        <div *ngIf="editForm.get('prenom')!.invalid && (editForm.get('prenom')!.dirty || editForm.get('prenom')!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get('prenom')?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+      <!-- email -->
+      <div class="form-group">
+        <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.email" for="field_email">Email</label>
+        <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+      <!-- date naiss -->
+      <div class="form-group">
+        <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.dateNaissance" for="field_dateNaissance"
+          >Date Naissance</label
+        >
+        <div class="input-group">
+          <input
+            id="field_dateNaissance"
+            data-cy="dateNaissance"
+            type="text"
+            class="form-control"
+            name="dateNaissance"
+            ngbDatepicker
+            #dateNaissanceDp="ngbDatepicker"
+            formControlName="dateNaissance"
+          />
+          <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()">
+            <fa-icon icon="calendar-alt"></fa-icon>
+          </button>
+        </div>
+        <div
+          *ngIf="editForm.get('dateNaissance')!.invalid && (editForm.get('dateNaissance')!.dirty || editForm.get('dateNaissance')!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('dateNaissance')?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+      <!-- matricule -->
+      <div class="form-group">
+        <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.matricule" for="field_matricule">Matricule</label>
+        <input type="text" class="form-control" name="matricule" id="field_matricule" data-cy="matricule" formControlName="matricule" />
+        <div *ngIf="editForm.get('matricule')!.invalid && (editForm.get('matricule')!.dirty || editForm.get('matricule')!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('matricule')?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeDossier.annee" for="field_annee">Annee</label>
+        <div class="input-group">
+          <input
+            id="field_annee"
+            data-cy="annee"
+            type="text"
+            class="form-control"
+            name="annee"
+            ngbDatepicker
+            #anneeDp="ngbDatepicker"
+            formControlName="annee"
+          />
+          <button type="button" class="btn btn-secondary" (click)="anneeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+        </div>
+        <div *ngIf="editForm.get('annee')!.invalid && (editForm.get('annee')!.dirty || editForm.get('annee')!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get('annee')?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+      <!-- cancel et save -->
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
