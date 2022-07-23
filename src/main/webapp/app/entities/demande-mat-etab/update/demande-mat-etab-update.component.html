@@ -1,12 +1,8 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2
-        id="jhi-demande-mat-etab-heading"
-        data-cy="DemandeMatEtabCreateUpdateHeading"
-        jhiTranslate="dbGestionMatricule5App.demandeMatEtab.home.createOrEditLabel"
-      >
-        Create or edit a Demande Mat Etab
+      <h2 id="jhi-demande-mat-etab-heading" data-cy="DemandeMatEtabCreateUpdateHeading">
+        Créer une Demande de matricule pour etablissement
       </h2>
 
       <div>
@@ -157,7 +153,9 @@
         </div>
         <!-- email -->
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.email" for="field_email">Email</label>
+          <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.email" for="field_email"
+            >Email de l'etablissement</label
+          >
           <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
           <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -168,7 +166,7 @@
         <!-- matricule etab -->
         <div
           class="row mb-3"
-          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_PROVISEUR']"
+          *jhiHasAnyAuthority="['ROLE_ADMIN']"
           ngbDropdown
           class="nav-item dropdown pointer"
           display="dynamic"
@@ -188,7 +186,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.demandeMatEtab.etablissement" for="field_etablissement"
             >Etablissement</label
           >
@@ -211,7 +209,7 @@
               {{ etablissementOption.nomEtab }}
             </option>
           </select>
-        </div>
+        </div>  -->
       </div>
 
       <div>
@@ -226,7 +224,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Envoyer</span>
         </button>
       </div>
     </form>

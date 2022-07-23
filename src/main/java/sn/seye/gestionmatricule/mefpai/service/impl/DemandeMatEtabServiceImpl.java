@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sn.seye.gestionmatricule.mefpai.domain.DemandeMatEtab;
 import sn.seye.gestionmatricule.mefpai.domain.Etablissement;
+import sn.seye.gestionmatricule.mefpai.domain.enumeration.StatutEtab;
+import sn.seye.gestionmatricule.mefpai.domain.enumeration.TypeEtab;
 import sn.seye.gestionmatricule.mefpai.repository.DemandeMatEtabRepository;
 import sn.seye.gestionmatricule.mefpai.service.DemandeMatEtabService;
 
@@ -38,11 +40,25 @@ public class DemandeMatEtabServiceImpl implements DemandeMatEtabService {
         String date = String.valueOf(System.currentTimeMillis());
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random rnd = new Random();
+        char letter = alphabet.charAt(rnd.nextInt(alphabet.length()));
+
+        String type = "L";
+        if (demandeMatEtab.getTypeEtab().equals(TypeEtab.CFP)) {
+            type = "C";
+        }
+
+        // String  stat = "E";
+        // if (demandeMatEtab.getStatut().equals(StatutEtab.Public)) {
+        //     stat = "F";
+        // }
 
         String matricule = year
             .substring(year.length() - 2)
-            .concat(demandeMatEtab.getNomEtab().substring(demandeMatEtab.getNomEtab().length() - 2))
-            .concat(date.substring(date.length() - 4));
+            .concat(type)
+            // .concat(stat)
+            // .concat(demandeMatEtab.getNomEtab().substring(demandeMatEtab.getNomEtab().length() - 2))
+            .concat(date.substring(date.length() - 3))
+            .concat(String.valueOf(letter));
 
         demandeMatEtab.setMatriculeEtab(matricule);
 

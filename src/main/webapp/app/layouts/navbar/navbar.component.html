@@ -81,7 +81,7 @@
         </li>
         <!-- gestion demande pour l'Etabliss-->
         <li
-          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRECTEUR', 'ROLE_CHEF_TRAVAUX', 'ROLE_COMPTABLE_MATIERE ', 'ROLE_PROVISEUR']"
+          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_CHEF_TRAVAUX', 'ROLE_DIRECTEUR', 'ROLE_PROVISEUR']"
           ngbDropdown
           class="nav-item dropdown pointer"
           display="dynamic"
@@ -172,7 +172,20 @@
                 (click)="collapseNavbar()"
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.entities.releveNote">Etablissement</span>
+                <span>Etablissement</span>
+              </a>
+            </li>
+            <!-- incription -->
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/inscription"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.inscription">inscription</span>
               </a>
             </li>
             <!-- apprenent -->
@@ -189,7 +202,7 @@
               </a>
             </li>
             <!-- etablissemnts -->
-            <li>
+            <!-- <li>
               <a
                 class="dropdown-item"
                 routerLink="/etablissement"
@@ -200,7 +213,7 @@
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span jhiTranslate="global.menu.entities.etablissement">Eablissement</span>
               </a>
-            </li>
+            </li> -->
             <!-- relevet -->
             <li>
               <a

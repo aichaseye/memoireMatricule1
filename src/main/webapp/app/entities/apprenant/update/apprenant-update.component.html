@@ -19,7 +19,7 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.apprenant.nomCompletApp" for="field_nomCompletApp"
-            >Nom Complet App</label
+            >Votre nom compet</label
           >
           <input
             type="text"
@@ -145,7 +145,7 @@
           <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb-3" [hidden]="editForm.get('matriculeApp')!.value == null">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.apprenant.matriculeApp" for="field_matriculeApp"
             >Matricule App</label
           >
@@ -230,8 +230,8 @@
             </option>
           </select>
         </div>
-
-        <div class="row mb-3">
+        <!-- Demande Mat App -->
+        <div class="row mb-3" [hidden]="editForm.get('matriculeApp')!.value == null">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.apprenant.demandeMatApp" for="field_demandeMatApp"
             >Demande Mat App</label
           >
@@ -256,7 +256,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb-3" [hidden]="editForm.get('matriculeApp')!.value == null">
           <label class="form-label" jhiTranslate="dbGestionMatricule5App.apprenant.demandeDossier" for="field_demandeDossier"
             >Demande Dossier</label
           >
